@@ -14,3 +14,9 @@
  *  - Final payment
  * 2. Display the calculation results.
  */
+
+console.log("=== Rakha's Lunch ===");
+console.log("Fried rice meals price: Rp18,000 * 3 = Rp54,000");
+console.log("bottles of mineral water price: Rp5,000 * 2 = Rp10,000");
+console.log("Dicount: Rp10,000");
+console.log("Final payment: Rp64,000 - Rp10,000 = Rp54,000");

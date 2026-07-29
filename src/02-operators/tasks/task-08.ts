@@ -24,3 +24,38 @@
  * - Final bill
  * - Green Energy Program eligibility
  */
+
+const previousMeter: number = 25640;
+const currentMeter: number = 25892;
+const electricityPricepkWh: number = 1650;
+const solarPanelInstall: boolean = true;
+const energySafeMode: boolean = false;
+
+// Total pemakaian energi (kWh)
+const totalEnergyConsumption: number = currentMeter - previousMeter;
+
+// Tagihan dasar sebelum diskon
+const baseBill: number = totalEnergyConsumption * electricityPricepkWh;
+
+// Perhitungan diskon
+let discountRate: number = 0;
+if (solarPanelInstall) {
+  discountRate += 0.20;
+}
+if (energySafeMode) {
+  discountRate += 0.05;
+}
+
+const discountAmount: number = baseBill * discountRate;
+const finalBill: number = baseBill - discountAmount;
+
+// Kelayakan Program Green Energy
+const greenEnergyEligible: boolean = solarPanelInstall && totalEnergyConsumption < 300 && energySafeMode;
+
+// Output
+console.log("Total Pemakaian Energi (kWh):", totalEnergyConsumption);
+console.log("Tagihan Dasar (Rp):", baseBill);
+console.log("Persentase Diskon:", `${discountRate * 100}%`);
+console.log("Jumlah Diskon (Rp):", discountAmount);
+console.log("Tagihan Akhir (Rp):", finalBill);
+console.log("Layak Program Green Energy:", greenEnergyEligible);

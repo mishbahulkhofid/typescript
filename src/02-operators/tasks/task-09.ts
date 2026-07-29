@@ -34,3 +34,57 @@
  * - Free shipping eligibility
 
  */
+
+interface Product {
+  product: string;
+  price: number;
+  quantity: number;
+}
+interface customer {
+  voucher: number;
+  premiumMember: boolean;
+  rewardPointRate: 1;
+}
+
+const product1: Product = {
+  product: "Mechanical Keyboard",
+  price: 850000,
+  quantity: 1,
+};
+const product2: Product = {
+  product: "Wireless Mouse",
+  price: 275000,
+  quantity: 2,
+};
+const product3: Product = {
+  product: "Monitor Stand",
+  price: 420000,
+  quantity: 1,
+};
+const customer: customer = {
+  voucher: 100000,
+  premiumMember: true,
+  rewardPointRate: 1,
+};
+
+const subtotal =
+  product1.price * product1.quantity +
+  product2.price * product2.quantity +
+  product3.price * product3.quantity;
+const membershipDiscount = customer.premiumMember ? subtotal * 0.1 : 0;
+const voucherDeduction =
+  customer.voucher > 0 ? Math.min(subtotal, customer.voucher) : 0;
+const paymentBeforeTax = subtotal - membershipDiscount - voucherDeduction;
+const tax = paymentBeforeTax * 0.11;
+const finalPayment = paymentBeforeTax + tax;
+const rewardPoints = Math.floor(finalPayment / 50000);
+const freeShipping = customer.premiumMember || finalPayment > 1500000;
+
+console.log("Product Subtotal:", subtotal);
+console.log("Membership Discount:", membershipDiscount);
+console.log("Voucher Deduction:", voucherDeduction);
+console.log("Payment Before Tax:", paymentBeforeTax);
+console.log("Tax:", tax);
+console.log("Final Payment:", finalPayment);
+console.log("Reward Points:", rewardPoints);
+console.log("Free Shipping Eligibility:", freeShipping);

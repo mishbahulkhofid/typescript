@@ -17,3 +17,22 @@
  * - Bonus
  * - Final salary
  */
+
+const employeName: string = "Dimas";
+const basicSalary: number = 5000000;
+const overtimeHours: number = 12;
+const overtimeRate: number = 50000;
+const bonus: number = overtimeHours > 10 ? 300000 : 0;
+
+console.log("===== Gaji Dimas =====")
+console.log("Employe Name: ",employeName);
+console.log("Basic Salary: ",basicSalary);
+console.log("Overtime Hours: ",overtimeHours);
+console.log("Overtime Rate: ",overtimeRate);
+
+console.log("===== Total Gaji Yang Didapat =====")
+console.log("Basic Salary: ",basicSalary)
+console.log("Bonus : ",bonus);
+console.log("Upah Lembur: ",overtimeRate)
+console.log("Total Gaji Dimas: ",bonus+overtimeRate+basicSalary)
+

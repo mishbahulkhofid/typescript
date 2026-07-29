@@ -9,3 +9,35 @@
  * 
  * display the student data using console.log.
  */
+
+interface Student {
+  studentId: string;
+  name: string;
+  age: number;
+  isActive: boolean;
+}
+
+const student1: Student = {
+  studentId: "ID123567",
+  name: "Ronaldo",
+  age: 16,
+  isActive: true,
+};
+
+const student2: Student = {
+  studentId: "ID124568",
+  name: "Lionel Messi",
+  age: 17,
+  isActive: true,
+};
+
+const student3: Student = {
+    studentId : "ID178908",
+    name : "Neymar",
+    age : 19,
+    isActive : true
+};
+
+const students = [student1, student2, student3];
+
+console.table(students);
