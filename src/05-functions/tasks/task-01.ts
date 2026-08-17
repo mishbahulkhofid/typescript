@@ -1,18 +1,27 @@
 /**
- * A teacher wants to verify student attendance before starting class. There are 30 students in the classroom. Instead of writing the attendance message 30 times, the teacher wants the system to display an attendance check for every student.
- * The expected output is:
- * -------------------------------------
- * Checking attendance for Student #1
- * Checking attendance for Student #2
- * ...
- * Checking attendance for Student #30
- * Attendance verification completed.
- * -------------------------------------
+ * A teacher wants to calculate students' final grades automatically. Instead of writing the same formula multiple times, the teacher asks the developer to create a reusable function.
+ * The final grade is calculated using the following formula:
+ * - Assignment: 30%
+ * - Midterm Exam: 30%
+ * - Final Exam: 40%
  * 
- * Tasks: 
- * 1. Create a program using a for loop.
- * 2. Display the attendance message for every student.
- * 3. After the loop finishes, display: "Attendance verification completed"
+ * Three students have the following scores:
+ * | Student | Assignment | Midterm | Final |
+ * | ------- | ---------: | ------: | ----: |
+ * | Alya    |         85 |      80 |    92 |
+ * | Budi    |         78 |      75 |    81 |
+ * | Citra   |         90 |      88 |    95 |
+ * 
+ * The function should return the calculated final grade.
+ * Student Tasks:
+ * 1. Create a function named calculateFinalGrade.
+ * 2. The function must receive:
+ *  - assignment score
+ *  - midterm score
+ *  - final exam score
+ * 3. Return the final grade.
+ * 4. Call the function for each student.
+ * 5. Display every student's final grade.
 
  */
 
