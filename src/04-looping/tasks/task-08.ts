@@ -21,3 +21,26 @@ const orders = [
   { id: "ORD005", paid: false, stockAvailable: false },
   { id: "ORD006", paid: true, stockAvailable: true }
 ];
+
+
+let pesananReady = 0;
+let pesananNoReady = 0;
+let pesananWaitStock = 0;
+let idPesanan:string[]=[];
+
+for (let i = 0; i < orders.length; i++){
+  if (orders[i].paid === true && orders[i].stockAvailable === true ){
+    pesananReady ++
+    idPesanan.push(orders[i].id)
+  }else if(orders[i].paid === false){
+    pesananWaitStock++
+  }else{
+    pesananNoReady++
+  }
+}
+console.log("Pesanan Siap Dikirim: ",pesananReady);
+console.log("Pesanan Belum Dibayar: ",pesananNoReady);
+console.log("Pesanan Menunggu Stock: ",pesananWaitStock);
+console.log("ID Pesanan Siap Dikirim: ",idPesanan);
+ 
+

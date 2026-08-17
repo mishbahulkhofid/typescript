@@ -35,4 +35,3 @@ console.log("Basic Salary: ",basicSalary)
 console.log("Bonus : ",bonus);
 console.log("Upah Lembur: ",overtimeRate)
 console.log("Total Gaji Dimas: ",bonus+overtimeRate+basicSalary)
-

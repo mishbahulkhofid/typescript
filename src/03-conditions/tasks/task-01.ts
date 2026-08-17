@@ -20,3 +20,12 @@
  * will be display "Congratulations! You are eligible to graduate.", 
  * otherwise display "You are not eligible to graduate."
  */
+
+const studentName: string = "Alya Putri";
+const finalScrore: number = 82;
+const attedance: number = 94;
+const tuitionPaid: boolean = true;
+
+if (finalScrore >= 75 && attedance >= 90 && tuitionPaid){
+  console.log("Selamat Kamu Telah Lulus");
+}

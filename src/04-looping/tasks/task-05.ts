@@ -24,3 +24,30 @@ const scores = [
     67, 79, 94, 83, 71,
     96, 65, 87, 74, 90
 ];
+
+let goldMedalWinners = 0;
+let silverMedalWinners = 0;
+let bronzeMedalWinners = 0;
+let noMedalWinners = 0;
+let totalScore = 0;
+let averageScore = 0;
+
+for (let i = 0; i < scores.length; i++) {
+    if (scores[i] >= 95) {
+        goldMedalWinners++;
+    } else if (scores[i] >= 85 && scores[i] <= 94) {
+        silverMedalWinners++;
+    } else if (scores[i] >= 75 && scores[i] <= 84) {
+        bronzeMedalWinners++;
+    } else {
+        noMedalWinners++;
+    }
+    totalScore += scores[i];
+}
+averageScore = totalScore / scores.length;
+
+console.log("Gold Medal Winners: ",goldMedalWinners);
+console.log("Silver Medal Winners: ",silverMedalWinners);
+console.log("Bronxe Medal Winners: ",bronzeMedalWinners);
+console.log("No Medal Winners: ",noMedalWinners);
+console.log("Average: ",averageScore);

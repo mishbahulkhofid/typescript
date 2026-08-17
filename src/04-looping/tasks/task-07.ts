@@ -18,3 +18,25 @@ const attendances = [
   { name: "Gita", present: true },
   { name: "Hana", present: false }
 ];
+
+
+let siswaHadir:number = 0;
+let siswaTidakHadir:number = 0;
+const daftarAbsen:string[] = [];
+let presentaseKehadiran: number = 0;
+
+for(let i = 0; i < attendances.length;i++){
+  if(attendances[i].present === true){
+    siswaHadir++;
+  }else {
+    siswaTidakHadir ++
+    daftarAbsen.push(attendances[i].name);
+  }
+  let totalSiswa = siswaHadir+siswaTidakHadir;
+  presentaseKehadiran = (siswaHadir/totalSiswa)*100;
+}
+
+console.log(`Jumlah siswa hadir: ${siswaHadir}`);
+console.log(`Jumlah siswa absen: ${siswaTidakHadir}`); // Gunakan variabel angka
+console.log(`Nama-nama siswa absen: ${daftarAbsen.join(", ")}`);
+console.log(`Persentase kehadiran: ${presentaseKehadiran.toFixed(2)}%`);
