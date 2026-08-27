@@ -1,3 +1,5 @@
+import { mkdirSync } from "node:fs";
+
 /**
  * A teacher wants to calculate students' final grades automatically. Instead of writing the same formula multiple times, the teacher asks the developer to create a reusable function.
  * The final grade is calculated using the following formula:
@@ -25,13 +27,18 @@
 
  */
 
+let alya:number;
+let budi:number;
+let citra:number;
 
-function verifikasiKehadiran(totalSiswa: number): void {
-  // Task 1 & 2: Loop dari 1 sampai totalSiswa
-  for (let i: number = 1; i <= totalSiswa; i++) {
-    console.log(`Checking attendance for Student #${i}`);
-  }
-
-  // Task 3: Ditampilkan sekali setelah loop selesai
-  console.log("Attendance verification completed.");
+function calculateFinalGrade(assignment:number, midterm:number, finalExam:number):number {
+    let finalGrade = ((assignment * 0.30)+(midterm * 0.30)+(finalExam * 0.40))
+return finalGrade;
 }
+alya = calculateFinalGrade(85,80,92)
+budi = calculateFinalGrade(78, 75, 81)
+citra = calculateFinalGrade(90, 88, 95)
+
+console.log(`Nilai Akhir Si Alya:${alya.toFixed(2)}`)
+console.log("Nilai Akhir Si Budi:",budi)//baris ini tidak menggunakan template literal
+console.log(`Nilai Akhir Si Citra:${citra}`)
