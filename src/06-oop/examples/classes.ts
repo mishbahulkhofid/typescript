@@ -1,78 +1,124 @@
-/**
- * Module 06: OOP — Examples
- *
- * Run: npm run example src/06-oop/examples/classes.ts
- */
-
-// Interface — defines the shape of an object
-interface Person {
-  name: string;
-  age: number;
-  greet(): string;
-}
-
-// Class implementing an interface
-class Student implements Person {
-  name: string;
-  age: number;
-  private studentId: string;
-
-  constructor(name: string, age: number, studentId: string) {
-    this.name = name;
-    this.age = age;
-    this.studentId = studentId;
+class Student {
+  constructor(
+    public name: string,
+    private age: number
+  ) {
   }
 
-  greet(): string {
-    return `Hi, I'm ${this.name}, age ${this.age}.`;
-  }
-
-  getId(): string {
-    return this.studentId;
+  public introduce(): void {
+    console.log(`My name is ${this.name}`);
   }
 }
 
-// Inheritance
-class GraduateStudent extends Student {
-  thesisTopic: string;
+const student = new Student("", 17);
 
-  constructor(name: string, age: number, studentId: string, thesisTopic: string) {
-    super(name, age, studentId);
-    this.thesisTopic = thesisTopic;
+console.log(student.name); // ✅ Allowed
+
+student.introduce(); // ✅ Allowed
+
+// console.log(student.age); // ❌ Error
+
+/** =================================================== */
+/**                    ENCAPSULATION                    */
+/** =================================================== */
+class BankAccount {
+
+  constructor(private balance: number) {
   }
 
-  greet(): string {
-    return `${super.greet()} My thesis is about ${this.thesisTopic}.`;
+  public deposit(amount: number): void {
+    if (amount > 0) {
+      this.balance += amount;
+    }
+  }
+
+  public withdraw(amount: number): void {
+    if (amount > 0 && amount <= this.balance) {
+      this.balance -= amount;
+    }
+  }
+
+  public getBalance(): number {
+    return this.balance;
   }
 }
 
-// Abstract class
-abstract class Shape {
-  abstract area(): number;
+const account = new BankAccount(1000000);
+account.deposit(500000);
+account.withdraw(250000);
+console.log(account.getBalance());
 
-  describe(): string {
-    return `This shape has an area of ${this.area()}.`;
+
+/** =================================================== */
+/**                    INHERITANCE                      */
+/** =================================================== */
+class Person {
+  constructor(
+    public name: string,
+    public age: number
+  ) { }
+
+  introduce(): void {
+    console.log(`My name is ${this.name}`);
   }
 }
 
-class Rectangle extends Shape {
-  constructor(private width: number, private height: number) {
-    super();
+class Instructor extends Person {
+  constructor(
+    name: string,
+    age: number,
+    public grade: number
+  ) {
+    super(name, age);
   }
 
-  area(): number {
-    return this.width * this.height;
+  study(): void {
+    console.log(`${this.name} is teaching.`);
   }
 }
 
-// Usage
-console.log("=== OOP ===");
-const alice = new Student("Alice", 20, "S001");
-console.log(alice.greet());
-console.log("Student ID:", alice.getId());
+const instructor = new Instructor(
+  "Jude Bellingham",
+  17,
+  11
+);
 
-const bob = new GraduateStudent("Bob", 25, "G001", "Machine Learning");
-console.log(bob.greet());
+instructor.introduce();
+instructor.study();
 
-const rect = new Rectangle(5, 3);
-console.log(rect.describe());
+/** =================================================== */
+/**                    POLYMORPHISM                     */
+/** =================================================== */
+class Notification {
+  send(): void {
+    console.log("Sending notification...");
+  }
+}
+
+class EmailNotification extends Notification {
+  send(): void {
+    console.log("Sending email...");
+  }
+}
+
+class SMSNotification extends Notification {
+  send(): void {
+    console.log("Sending SMS...");
+  }
+}
+
+class WhatsAppNotification extends Notification {
+  send(): void {
+    console.log("Sending WhatsApp message...");
+  }
+}
+
+const notifications: Notification[] = [
+  new EmailNotification(),
+  new SMSNotification(),
+  new WhatsAppNotification()
+];
+
+for (const notification of notifications) {
+  notification.send();
+}
