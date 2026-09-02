@@ -6,24 +6,43 @@
  */
 
 function registerStudent(
-    studentName: string,
-    callback: (name: string) => void
+  studentName: string,
+  callback: (name: string) => void
 ): void {
-    console.log(`Registering ${studentName}...`);
+  console.log(`Registering ${studentName}...`);
 
-    callback(studentName);
+  callback(studentName);
 }
 
 /** The school provides the callback: */
 function showRegistrationMessage(name: string): void {
-    console.log(`${name} successfully registered.`);
+  console.log(`${name} successfully registered.`);
 }
 
 /** show registration message */
-registerStudent(`John Cena`, showRegistrationMessage)
+registerStudent(`John Cena`, showRegistrationMessage);
 
 /** 
  * TASK:
- * create another function that display welcomming message for entire student!
+ * create another function that display welcoming message for entire student!
  * Don't forget to implement callback function.
  * */
+
+function welcomeAllStudents(
+  studentNames: string[],
+  callback: (name: string) => void
+): void {
+  console.log(`Sending welcome messages to ${studentNames.length} students...`);
+
+  studentNames.forEach((name) => {
+    callback(name);
+  });
+}
+
+/** The school provides the callback: */
+function showWelcomeMessage(name: string): void {
+  console.log(`Welcome, ${name}! We're glad to have you.`);
+}
+
+/** show welcome message for all students */
+welcomeAllStudents(["John Cena", "Alice", "Budi"], showWelcomeMessage);
