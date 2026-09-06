@@ -26,9 +26,18 @@ type Employee = {
     salary: number
     performance: number
 }
-type PERFORMANCE_STATUS = "Exceeds Expectations" | "Meets Expectations" | "Needs Improvement"
+
+function employeeProcess<T>(
+    arr: Employee[],
+    callback: (employee: Employee) => T
+): T[] {
+    return arr.map((item) => callback(item));
+}
+
+type PERFORMANCE_STATUS = "Exceeds Expectations" | "Meets Expectations" | "Needs Improvement" | "Unsatisfactory"
 type EMPLOYEE_BONUS = Employee & { bonus: number }
 type EMPLOYEE_PERFORMANCE = Employee & { status: PERFORMANCE_STATUS }
+type EMPLOYEE_SUMMARY = Employee & {finalSalary:number,status:PERFORMANCE_STATUS}
 
 const employees: Employee[] = [
     { name: "Alya", salary: 5000000, performance: 92 },
@@ -41,24 +50,73 @@ const employees: Employee[] = [
 
 function calculateFinalSalary(selectedEmployee: Employee): EMPLOYEE_BONUS {
     // implementation: this function return employee data with bonus and updated final salary
-    return;
+    let bonusRate = 0;
+    if(selectedEmployee.performance >= 90){
+        bonusRate = 0.15;
+    }else if(selectedEmployee.performance >= 80){
+        bonusRate = 0.10;
+    }else if(selectedEmployee.performance >= 70){
+        bonusRate = 0.05;
+    }else{
+        bonusRate = 0;
+    }
+    const bonusAmmount = selectedEmployee.salary * bonusRate;
+    return {
+        ...selectedEmployee,
+        salary :selectedEmployee.salary + bonusAmmount,
+        bonus : bonusAmmount
+    }
 }
 function getPerformanceStatus(selectedEmployee: Employee): EMPLOYEE_PERFORMANCE {
-    return;
+    let status : PERFORMANCE_STATUS;
+    if(selectedEmployee.performance >= 90){
+        status = "Exceeds Expectations"
+    }else if(selectedEmployee.performance >= 80){
+        status = "Meets Expectations"
+    }else if(selectedEmployee.performance >= 70){
+        status = "Needs Improvement"
+    }else{
+        status = "Unsatisfactory"
+    }
+    return{
+        ...selectedEmployee,
+        status:status
+    }
+}
+function getEmployeSummary(selectedEmployee:Employee):EMPLOYEE_SUMMARY{
+    let bonusRate = 0;
+    let status:PERFORMANCE_STATUS;
+
+    if(selectedEmployee.performance >= 90){
+        bonusRate = 0.15
+        status ="Exceeds Expectations"
+    }else if(selectedEmployee.performance >= 80){
+        bonusRate = 0.10
+        status = "Meets Expectations"
+    }else if(selectedEmployee.performance >= 70){
+        bonusRate = 0.05
+        status = "Needs Improvement"
+    }else{
+        status = "Unsatisfactory"
+    }
+    const bonusAmmount = selectedEmployee.salary * bonusRate;
+    return{
+        ...selectedEmployee,
+        finalSalary:selectedEmployee.salary + bonusAmmount,
+        status:status
+    };
 }
 
-function employeeProcess<T>(
-    arr: Employee[],
-    callback: (employee: Employee) => T
-): T[] {
-    return;
-}
+
 
 const employeeWithFinalSalary = employeeProcess(employees, calculateFinalSalary)
 const employeeWithPerformanceStatus = employeeProcess(employees, getPerformanceStatus)
+const employeeWithSummary = employeeProcess(employees,getEmployeSummary)
 
 console.log(`====== EMPLOYEES WITH FINAL SALARY + BONUS ======`);
-console.log({ employees: employeeWithFinalSalary })
+console.table(employeeWithFinalSalary)
 console.log(`====== EMPLOYEES WITH PERFORMANCE STATUS ======`);
-console.log({ employees: employeeWithPerformanceStatus })
+console.table(employeeWithPerformanceStatus)
+console.log(`====== EMPLOYESS WITH FUL SUMMARY ======`)
+console.table(employeeWithSummary)
 

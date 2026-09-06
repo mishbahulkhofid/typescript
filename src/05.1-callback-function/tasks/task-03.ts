@@ -1,7 +1,12 @@
 /**
  * An online store has the following products:
  */
-const products = [
+type Product = {
+    name:string,
+    price:number,
+}
+
+const products:Product[] = [
     { name: "Keyboard", price: 850000 },
     { name: "Mouse", price: 275000 },
     { name: "Monitor", price: 2200000 },
@@ -21,3 +26,36 @@ const products = [
  * 
  * Instead of creating a separate loop for every operation, the developer creates a reusable processing function.
  */
+
+function productProcess(productList : Product[],callback: (product:Product)=>void){
+    for(const product of productList){
+        callback(product)
+    }
+}
+
+function displayProduct(product:Product):void{
+    console.log(`Product Name:${product.name} - Price:${product.price}`)
+}
+
+function displayExpensiveProduct(product:Product):void{
+    if(product.price > 1000000){
+       console.log(`Product Name:${product.name} - Price:${product.price}`)
+     }
+}
+
+function displayDicountProduct(product:Product):void{
+    if(product.price > 500000){
+        const discount = product.price * 0.9;
+        console.log(`Product Name:${product.name} - Original Price:${product.price}| Dicount:${discount}`)
+    }
+}
+
+console.log("=======================================")
+console.log("1. Display All Product ")
+productProcess(products,displayProduct)
+console.log("=======================================")
+console.log("2. Display Expensive Product ")
+productProcess(products,displayExpensiveProduct)
+console.log("=======================================")
+console.log("3. Display Products (> Rp500,000) with 10% Discount")
+productProcess(products,displayDicountProduct)
